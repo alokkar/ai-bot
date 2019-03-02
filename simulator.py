@@ -17,6 +17,7 @@ import time
 import copy
 import traceback
 from team5 import Team5
+from player_final import Player_final
 
 TIME = 24
 MAX_PTS = 86
@@ -377,7 +378,7 @@ if __name__ == '__main__':
         obj2 = Team5()
     elif option == '5':
         obj1 = Team5()
-        obj2 = Team5()
+        obj2 = Player_final(1)
     else:
         print 'Invalid option'
         sys.exit(1)
