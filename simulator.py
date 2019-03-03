@@ -383,11 +383,11 @@ if __name__ == '__main__':
         obj2 = Bot()
         obj1 = Bot()
     elif option == '6':
-        obj2 = Player_final(20)
+        obj2 = Random_Player()
         obj1 = Team5_new()
         won = 0
         lost = 0
-        for i in range(10):
+        for i in range(15):
         	x=gameplay(obj1, obj2)
         	if x[0] > x[1]:
         		won+=1
