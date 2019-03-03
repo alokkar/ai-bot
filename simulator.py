@@ -378,7 +378,7 @@ if __name__ == '__main__':
         obj2 = Manual_Player()
     elif option == '4':
         obj2 = Random_Player()
-        obj1 = Bot()
+        obj1 = Team5_new()
     elif option == '5':
         obj2 = Bot()
         obj1 = Bot()
@@ -399,6 +399,6 @@ if __name__ == '__main__':
         print 'Invalid option'
         sys.exit(1)
 
-    # x = gameplay(obj1, obj2)
+    x = gameplay(obj1, obj2)
     print "Player 1 points:", x[0] 
     print "Player 2 points:", x[1]

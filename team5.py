@@ -8,7 +8,7 @@ class Team5:
     def __init__(self):
         self.flag = 1
         self.next_move = (0 , 0, 0)
-        self.maxdepth = 2
+        self.maxdepth = 4
 
     def returnValEval(self, arr):
         # arr[0] => 'x' ... arr[1] => 'o' ... arr[2] => 'd' ... arr[3] => '-'
