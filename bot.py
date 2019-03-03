@@ -8,7 +8,7 @@ class Bot:
 
     def __init__(self):
         self.flag = 1
-        self.depth = 2
+        self.depth = 7
         self.next_move = (0, 0, 0)
 
     def flagtonum(self, flag):
@@ -26,7 +26,7 @@ class Bot:
     def move(self, board, old_move, flg):
         self.flag = self.flagtonum(flg)
         
-        alpha = 999999999 
+        alpha = -999999999 
         beta = -alpha
 
         curr_board = copy.deepcopy(board)
@@ -42,15 +42,15 @@ class Bot:
         if(arr[1] == 3 and arr[3] == 0 and arr[0] == 0 and los !=0 ):
             heuristic = -10000
 
-        if(arr[0] == 2 and arr[3] == 1 and arr[1] == 0 and los != 0):
-            heuristic = 2
-        if(arr[1] == 2 and arr[3] == 1 and arr[0] == 0 and los != 0):
-            heuristic = -2
+        # if(arr[0] == 2 and arr[3] == 1 and arr[1] == 0 and los != 0):
+        #     heuristic = 2
+        # if(arr[1] == 2 and arr[3] == 1 and arr[0] == 0 and los != 0):
+        #     heuristic = -2
 
-        if(arr[0] == 2 and arr[3] == 1 and arr[1] == 0):
-            heuristic = 2
-        if(arr[1] == 2 and arr[3] == 1 and arr[0] == 0):
-            heuristic = -2
+        # if(arr[0] == 2 and arr[3] == 1 and arr[1] == 0):
+        #     heuristic = 2
+        # if(arr[1] == 2 and arr[3] == 1 and arr[0] == 0):
+        #     heuristic = -2
 
         return heuristic
 
@@ -153,14 +153,18 @@ class Bot:
         bigboard += self.weightedEval(board)
 
         smallboard += self.localeval(board)
-        return bigboard + wincheck
+        return bigboard + wincheck + smallboard
 
     def terminate(self, old_move, board, depth, flag):
 
         check = board.find_terminal_state()
 
+        if check[0]=='WON':
+        	return(1,flag*10000)
+
         if depth == self.depth or check[0] != 'CONTINUE':
             return (1, flag*self.evaluate(board, old_move))
+
 
         return (0,0)
 
@@ -172,6 +176,9 @@ class Bot:
             return term[1]
 
         valid_moves = board.find_valid_move_cells(old_move)
+        random.shuffle(valid_moves)
+        # print(flag)
+
 
         if flag > 0:
 
@@ -210,7 +217,7 @@ class Bot:
                     if(depth==1):
                         self.next_move = copy.deepcopy(move)
 
-                alpha = min(best, alpha)
+                beta = min(best, beta)
 
                 if beta <= alpha:
                     break

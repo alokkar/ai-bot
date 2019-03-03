@@ -17,8 +17,10 @@ import time
 import copy
 import traceback
 from team5 import Team5
+from team5_new import Team5_new
 from player_final import Player_final
 from bot import Bot
+from alok import Alok
 
 TIME = 24
 MAX_PTS = 86
@@ -375,15 +377,28 @@ if __name__ == '__main__':
         obj1 = Manual_Player()
         obj2 = Manual_Player()
     elif option == '4':
-        obj1 = Random_Player()
-        obj2 = Team5()
+        obj2 = Random_Player()
+        obj1 = Bot()
     elif option == '5':
-        obj1 = Team5()
         obj2 = Bot()
+        obj1 = Bot()
+    elif option == '6':
+        obj2 = Player_final(20)
+        obj1 = Team5_new()
+        won = 0
+        lost = 0
+        for i in range(10):
+        	x=gameplay(obj1, obj2)
+        	if x[0] > x[1]:
+        		won+=1
+    		else:
+    			lost+=1
+    	print(won)
+    	print(lost)
     else:
         print 'Invalid option'
         sys.exit(1)
 
-    x = gameplay(obj1, obj2)
+    # x = gameplay(obj1, obj2)
     print "Player 1 points:", x[0] 
     print "Player 2 points:", x[1]
