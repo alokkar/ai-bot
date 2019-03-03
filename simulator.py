@@ -374,7 +374,7 @@ if __name__ == '__main__':
         obj2 = Manual_Player()
     elif option == '4':
         obj2 = Random_Player()
-        obj1 = Team5_new()
+        obj1 = Team5()
     elif option == '5':
         obj2 = Bot()
         obj1 = Bot()

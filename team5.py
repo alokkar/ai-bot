@@ -3,11 +3,11 @@ import random
 import time
 import copy
 
-class Team5_new:
+class Team5:
     def __init__(self):
         
         self.flag = 1
-        self.next_move = (0, 0, 0)
+        self.next_move = (0, 2, 2)
         self.maxdepth = 4
 
     def flagtonum(self, flag):
@@ -178,8 +178,13 @@ class Team5_new:
     def move(self, board, old_move, flag):
         
         self.flag = self.flagtonum(flag)
+
+        if old_move == (-1,-1,-1):
+            return self.next_move
+
         val=self.minimax(board, old_move, 0, -999999999, 999999999, True, self.numtoflag(self.flag))
-        return (self.next_move[0], self.next_move[1],self.next_move[2])
+        
+        return self.next_move
 
     def finished(self, board, old_move, depth):
         
@@ -195,13 +200,15 @@ class Team5_new:
         
         #check if the search should be stopped or not
         iffinished = self.finished(board, old_move, depth)
+        
         if iffinished[0] == 1:
             return iffinished[1]
+
         best_value = ismaxplayer * -999999999 + (1 - ismaxplayer) * 999999999
         
         #Find valid moves and shuffle them
         valid_moves = board.find_valid_move_cells(old_move)
-
+        
         #Run a DFS
         for move in valid_moves:
 
@@ -231,6 +238,8 @@ class Team5_new:
                     if depth == 0:
                         self.next_move = copy.deepcopy(move)
                 beta = min(beta, best_value)
+            
+            #Return to the branch
             if beta <= alpha:
                 break
         
