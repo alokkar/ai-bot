@@ -17,10 +17,6 @@ import time
 import copy
 import traceback
 from team5 import Team5
-from team5_new import Team5_new
-from player_final import Player_final
-from bot import Bot
-from alok import Alok
 
 TIME = 24
 MAX_PTS = 86
